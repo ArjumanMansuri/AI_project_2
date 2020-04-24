@@ -1,0 +1,2 @@
+1  test-ham-1.txt  ham  -3.4136349971985562  -3.596664959441256  ham  right
+2  test-spam-1.txt  spam  -4.9699374979658435  -4.721603696049556  spam  right
