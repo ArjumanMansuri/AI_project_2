@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[278]:
+# In[26]:
 
 
 import os;
 import numpy as np;
 import re;
+import time;
 
 
-# In[279]:
+# In[27]:
 
 
 vocab = []
@@ -18,6 +19,8 @@ freq_spam=[]
 sizeOfVocab=0
 conditionalProbOfHam=[]
 conditionalProbOfSpam=[]
+sizeOfHamWords=0
+sizeOfSpamWords=0
 
 
 # Number of ham files
@@ -40,14 +43,14 @@ priorProbOfHam=noOfHamFiles/noOfTotalFiles
 priorProbOfSpam=noOfSpamFiles/noOfTotalFiles
 
 
-# In[280]:
+# In[28]:
 
 
 def word_count_directory(directory):
     filelist=[os.path.join(directory,f) for f in os.listdir(directory)]
     filelist.sort()
-    sizeOfHamWords=0
-    sizeOfSpamWords=0
+    global sizeOfHamWords
+    global sizeOfSpamWords
     for i in filelist:
         print(i)
         filetext = open(i, "rb") 
@@ -68,11 +71,9 @@ def word_count_directory(directory):
                     indexOfElement = vocab.index(word)
                     
                     if("train-ham" in i):
-                        sizeOfHamWords=sizeOfHamWords+1
                         freq_ham[indexOfElement] +=1
                         freq_spam[indexOfElement] +=0
                     else:
-                        sizeOfSpamWords=sizeOfSpamWords+1
                         freq_ham[indexOfElement] +=0
                         freq_spam[indexOfElement] +=1
                 
@@ -81,12 +82,10 @@ def word_count_directory(directory):
                     vocab.append(word)
                     
                     if("train-ham" in i):
-                        sizeOfHamWords=sizeOfHamWords+1
                         freq_ham.append(1)
                         freq_spam.append(0)
                         
                     else:
-                        sizeOfSpamWords=sizeOfSpamWords+1
                         freq_ham.append(0)
                         freq_spam.append(1)
                     
@@ -100,13 +99,20 @@ def word_count_directory(directory):
     sizeOfVocab = len(vocab)
 
 
-# In[284]:
+# In[29]:
 
 
+ddd=time.time()
 word_count_directory("/Users/apple/Desktop/AI-COMP 6721/AI_Proj/Project2/train/")
 
 
-# In[285]:
+# In[30]:
+
+
+print(time.time()-ddd)
+
+
+# In[31]:
 
 
 sizeOfVocab=len(vocab)
@@ -114,12 +120,11 @@ frequency_ham=np.array(freq_ham)
 frequency_spam=np.array(freq_spam)
 print(frequency_spam)
 
+
 sizeOfHamWords2=np.sum(frequency_ham)
 sizeOfSpamWords2=np.sum(frequency_spam)
 print(frequency_ham.shape)
 print(frequency_spam.shape)
-print(sizeOfHamWords)
-print(sizeOfSpamWords)
 print(sizeOfHamWords2)
 print(sizeOfSpamWords2)
 
@@ -128,25 +133,31 @@ frequency_ham =frequency_ham+0.5
 frequency_spam=frequency_spam+0.5
 
 
-# In[286]:
+# In[32]:
 
 
 sizeOfVocab
 
 
-# In[287]:
+# In[43]:
+
+
+vocab
+
+
+# In[33]:
 
 
 print(frequency_ham)
 
 
-# In[288]:
+# In[34]:
 
 
 print(frequency_spam)
 
 
-# In[289]:
+# In[35]:
 
 
 print(sizeOfVocab)
@@ -154,7 +165,7 @@ print(priorProbOfHam)
 print(priorProbOfSpam)
 
 
-# In[290]:
+# In[36]:
 
 
 conditionalProbOfHam=[]
@@ -172,15 +183,16 @@ for i in range(len(vocab)):
 print(conditionalProbOfHam)
 
 
-# In[291]:
+# In[37]:
 
 
 print(conditionalProbOfSpam)
 
 
-# In[309]:
+# In[ ]:
 
 
+sss=time.time()
 sortedVocab=vocab.copy()
 sortedVocab.sort()
 f = open("model.txt", "w")   # 'r' for reading and 'w' for writing
@@ -188,15 +200,15 @@ f.truncate(0)
   
 for counter in range(len(sortedVocab)):
     indexOfWord=vocab.index(sortedVocab[counter])
-    modelText= str(counter)
+    modelText= str(counter+1)
     spaceTwo=str("  ")
     word=str(sortedVocab[counter])
-    freqInham=str(frequency_ham[counter]-0.5)    #  freqInham=str((frequency_ham[counter]-0.5)) 
-    probInham=str(conditionalProbOfHam[counter])
-    freqInspam=str(frequency_spam[counter]-0.5)    #  freqInham=str((frequency_ham[counter]-0.5)) 
-    probInspam=str(conditionalProbOfSpam[counter])
+    freqInham=str(int(frequency_ham[indexOfWord]-0.5))   #  freqInham=str((frequency_ham[counter]-0.5)) 
+    probInham= str( "{:.8f}".format(float( conditionalProbOfHam[indexOfWord] )) )
+    freqInspam=str(int(frequency_spam[indexOfWord]-0.5))    #  freqInham=str((frequency_ham[counter]-0.5)) 
+    probInspam=str( "{:.8f}".format(float(  conditionalProbOfSpam[indexOfWord])))
     f.write(str(modelText+spaceTwo+word+spaceTwo+freqInham+spaceTwo+probInham+spaceTwo+freqInspam+spaceTwo+probInspam+"\n"))
     
-    
 f.close() 
+print(time.time()-sss)
 
