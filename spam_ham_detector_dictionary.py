@@ -13,7 +13,7 @@ import os
 # In[3]:
 
 
-directory = "/Users/zankhanapatel/Documents/git/AI project2/AI_project_2/traindata"
+directory = "/Users/zankhanapatel/Documents/git/AI project2/AI_project_2/train"
 vocabulary = set()
 
 hamDictionary = {}
@@ -26,7 +26,7 @@ def word_count_directory(directory):
     counter1 = 0
     counter2 = 0
     for file_path in filelist:
-        with open(file_path) as infile:
+        with open(file_path, encoding="utf8", errors='ignore') as infile:
             # to store type of file 'spam' or 'ham'
             file_type = ''
             if 'spam' in file_path:

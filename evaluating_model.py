@@ -3,7 +3,7 @@ import re
 import math
 from spam_ham_detector_dictionary import *
 
-test_directory = "/Users/zankhanapatel/Documents/git/AI project2/AI_project_2/testdata"
+test_directory = "/Users/zankhanapatel/Documents/git/AI project2/AI_project_2/test"
 
 
 def testModel(test_directory):
@@ -17,7 +17,7 @@ def testModel(test_directory):
     length_counter = 1
     file_list = [os.path.join(test_directory, f) for f in os.listdir(test_directory)]
     for file_path in file_list:
-        with open(file_path) as infile:
+        with open(file_path, encoding="utf8", errors='ignore') as infile:
             # to store type of file 'spam' or 'ham'
             target_result = ''
             if 'spam' in file_path:
