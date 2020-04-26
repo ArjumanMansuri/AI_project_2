@@ -4,7 +4,7 @@ COMP 6721 Applied Artificial Intelligence (Winter 2020)
 Group:7
 
 Zankhanaben Patel - 40067635,
-Arjuman Mansuri - 60076180,
+Arjuman Mansuri - 40076180,
 Deep Patel - 40087798.
 
 List of all submitted files:
