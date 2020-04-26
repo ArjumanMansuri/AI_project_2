@@ -1,9 +1,11 @@
 # AI_project_2 
 COMP 6721 Applied Artificial Intelligence (Winter 2020)
-Group:7 
-Zankhanaben Patel - 40067635
-Arjuman Mansuri - 60076180
-Deep Patel - 40087798
+
+Group:7
+
+Zankhanaben Patel - 40067635,
+Arjuman Mansuri - 60076180,
+Deep Patel - 40087798.
 
 List of all submitted files:
 1. spam_detector.py :
@@ -25,5 +27,6 @@ with terminal, go to the folder where the spam_detector.py is located and run be
 python spam_detector.py
 
 This will generate both model.txt and result.txt.
+
 2. with pycharm IDE
 Open the files in IDE. Paste train and test dataset folder with the file. Run the spam_detector.py. It'll generate model.txt and result.txt.
