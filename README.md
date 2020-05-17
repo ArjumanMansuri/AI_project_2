@@ -1,12 +1,6 @@
 # AI_project_2 
 COMP 6721 Applied Artificial Intelligence (Winter 2020)
 
-Group:7
-
-Zankhanaben Patel - 40067635,
-Arjuman Mansuri - 40076180,
-Deep Patel - 40087798.
-
 List of all submitted files:
 1. spam_detector.py :
 This file contains all the functions related to build a probabilistic model from the training set for SPAM detector (which will create model.txt file) plus all the functions related to test the model on given test dataset. This file will create a single file called result.txt with classification results wether it's SPAM or HAM. 
